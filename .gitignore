@@ -1,0 +1,7 @@
+# Packaging
+packaging/**/pkg
+packaging/**/src
+packaging/**/*.tar.*
+packaging/**/*.pack
+packaging/rebornos-software-template-git/rebornos-software-template/*
+packaging/rebornos-software-template/rebornos-software-template/*

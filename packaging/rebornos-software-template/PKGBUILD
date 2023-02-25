@@ -1,0 +1,73 @@
+# Maintainer: shivanandvp <shivanandvp@rebornos.org, shivanandvp.oss@gmail.com>
+
+pkgname=rebornos-software-template
+pkgver=0.0.1
+pkgrel=1
+
+arch=('i686' 'x86_64' 'aarch64' 'armv6h' 'armv7h')
+pkgdesc='A template for creating RebornOS software packages'
+url='https://github.com/RebornOS-Developers/rebornos-software-template'
+license=('MPL2')
+depends=()
+optdepends=()
+provides=('rebornos-software-template')
+conflicts=('rebornos-software-template' 'rebornos-software-template-git' 'rebornos-software-template-local')
+md5sums=('SKIP')
+makedepends=() 
+
+source=("https://github.com/RebornOS-Developers/rebornos-software-template/archive/refs/tags/v${pkgver}.tar.gz")
+
+package() {
+    PROJECT_DIRECTORY="${srcdir}/rebornos-software-template-${pkgver}"
+    RESOURCE_DIRECTORY="$PROJECT_DIRECTORY/packaging/resources"
+    # BUILD_DIRECTORY="$PROJECT_DIRECTORY/build"
+    NUMBER_OF_PROCESSORS="$(nproc)"
+    NUMBER_OF_PROCESSORS="$(($NUMBER_OF_PROCESSORS-1))"
+    BIN_DIRECTORY_STUB="src/bin"
+    BIN_DIRECTORY="$PROJECT_DIRECTORY/$DIST_DIRECTORY_STUB"
+    LIB_DIRECTORY_STUB="src/lib"
+    LIB_DIRECTORY="$PROJECT_DIRECTORY/$LIB_DIRECTORY_STUB"        
+        
+    # ============================================
+    # Files and directories related to the project
+    # ============================================
+
+    (   # -------------
+        # Copy binaries
+        # -------------
+        cd "$BIN_DIRECTORY" && \
+        find . \            
+            -mindepth 1 \
+            -maxdepth 5 \
+            -type f \
+            -exec \
+                install -Dm 755 "{}" "${pkgdir}/$BIN_DIRECTORY_STUB/{}" \;
+    )
+    (   # -------------
+        # Copy libraries
+        # -------------
+        cd "$LIB_DIRECTORY" && \
+        find . \            
+            -mindepth 1 \
+            -maxdepth 5 \
+            -type f \
+            -exec \
+                install -Dm 755 "{}" "${pkgdir}/$LIB_DIRECTORY_STUB/{}" \;
+    )
+
+    # ================================================
+    # Files and directories related to the application
+    # ================================================
+
+    (   # -------------
+        # Copy binaries
+        # -------------
+        cd "$RESOURCE_DIRECTORY" && \
+        find . \            
+            -mindepth 1 \
+            -maxdepth 5 \
+            -type f \
+            -exec \
+                install -Dm 755 "{}" "${pkgdir}/opt/${pkgname}/{}" \;
+    )
+}

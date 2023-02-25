@@ -1,0 +1,31 @@
+[Desktop Entry]
+
+# The version of the desktop entry specification to which this file complies
+Version=1.0
+
+# The type as listed above
+Type=Application
+
+# The name of the application
+Name=RebornOS Software Template
+
+# A comment which can/will be used as a tooltip
+Comment=An application that does nothing special
+
+# The path to the folder in which the executable is run
+Path=/opt/rebornos-software-template
+
+# The executable of the application, possibly with arguments.
+Exec=rebornos-software-template
+
+# The name of the icon that will be used to display this entry
+Icon=/opt/rebornos-software-template/icon.png
+
+# Describes whether this application needs to be run in a terminal or not
+Terminal=false
+
+# Describes the categories in which this entry should be shown
+Categories=System;Utility;Accessibility;
+
+# A list of strings which may be used in addition to other metadata to describe this entry. This can be useful e.g. to facilitate searching through entries
+Keywords=RebornOS;Software;Template;Get Started;
